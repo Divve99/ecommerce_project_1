@@ -30,13 +30,13 @@ function addCookieItem(productId, action)
             cart[productId]['quantity'] -= 1
 
             if (cart[productId]['quantity'] <= 0){
-                console.log(' Item should be deleted ')
+                console.log('Remove Item')
                 delete cart[productId]
             }
         }
         console.log('Cart:', cart)
         document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
-
+        location.reload()
     }
 
 function updateUserOrder(productId, action){
@@ -56,7 +56,7 @@ function updateUserOrder(productId, action){
         return response.json()
     })
     .then((data) => {
-        location.reload()
         console.log('Data:', data)
+        location.reload()
     })
 }
