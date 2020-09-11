@@ -7,7 +7,7 @@ from django.db import models
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=200, null=True)
-    email =models.CharField(max_length=200, null=True)
+    email = models.CharField(max_length=200, null=True)
 
     def __str__(self):
         return self.name
@@ -15,6 +15,7 @@ class Customer(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=200, null=True)
+    #price = models.FloatField()
     price = models.DecimalField(max_digits=7, decimal_places=2)
     digital = models.BooleanField(default=False, null=True, blank=False)
     image = models.ImageField(null=True, blank=True)
@@ -23,7 +24,7 @@ class Product(models.Model):
         return self.name
 
     @property
-    def imageURl(self):
+    def imageURL(self):
         try:
             url = self.image.url
         except:

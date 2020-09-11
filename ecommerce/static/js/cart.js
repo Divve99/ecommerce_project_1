@@ -8,57 +8,36 @@ for (i = 0; i < updateBtns.length; i++){
 
         console.log('USER:', user)
         if (user == 'AnonymousUser'){
-        console.log(' Not logged in... ')
+            addCookieItem(productId, action)
         }else{
              updateUserOrder(productId, action)
         }
      })
 }
-function addCookieItem(productId, action){
-    console.log(' Not logged in... ')
+function addCookieItem(productId, action)
+    {
+        console.log(' Not logged in... ')
 
-    if (action == 'add'){
-        if (cart[productId] == undefined){
-            cart[productId] = {'quantity': 1}
-        }else{
-            cart[productId]['quantity'] += 1
+        if (action == 'add'){
+            if (cart[productId] == undefined){
+                cart[productId] = {'quantity': 1}
+            }else{
+                cart[productId]['quantity'] += 1
+            }
         }
-    }
 
-    if (action == 'remove'){
-        cart[productId]['quantity'] -= 1
+        if (action == 'remove'){
+            cart[productId]['quantity'] -= 1
 
-        if (cart[productId]['quantity'] <= 0){
-            console.log(' Item should be deleted ')
-            delete cart[productId]
+            if (cart[productId]['quantity'] <= 0){
+                console.log('Remove Item')
+                delete cart[productId]
+            }
         }
+        console.log('Cart:', cart)
+        document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+        location.reload()
     }
-    console.log('Cart:', cart)
-    document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
-}
-function addCookieItem(productId, action){
-    console.log(' Not logged in... ')
-
-    if (action == 'add'){
-        if (cart[productId] == undefined){
-            cart[productId] = {'quantity': 1}
-        }else{
-            cart[productId]['quantity'] += 1
-        }
-    }
-
-    if (action == 'remove'){
-        cart[productId]['quantity'] -= 1
-
-        if (cart[productId]['quantity'] <= 0){
-            console.log(' Item should be deleted ')
-            delete cart[productId]
-        }
-    }
-    console.log('Cart:', cart)
-    document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
-}
-
 
 function updateUserOrder(productId, action){
     console.log('User is logged in, sending data...')
@@ -81,4 +60,3 @@ function updateUserOrder(productId, action){
         location.reload()
     })
 }
-
