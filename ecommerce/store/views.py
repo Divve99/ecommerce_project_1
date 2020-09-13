@@ -149,3 +149,7 @@ def processOrder(request):
         )
 
     return JsonResponse('payment Complete', safe=False)
+
+
+def view(request):
+    return JsonResponse('display Image', safe=False)
